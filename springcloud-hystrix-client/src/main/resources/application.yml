@@ -1,0 +1,34 @@
+spring:
+   profiles:
+      active: dev-7788 # 指定当前活跃的服务
+
+---
+spring:
+   profiles: dev-7788 # 开发中的6868
+   application:
+      name: client-service
+      
+eureka:
+   client:
+      serviceUrl:
+         # 配置客服端的服务注册地址，即Eureka Server的地址
+         defaultZone: http://navy:123456@127.0.0.1:6868/eureka/,http://navy:123456@127.0.0.1:6869/eureka/
+
+server:
+   port: 7788
+
+  
+---
+spring:
+   profiles: dev-7789 # 开发中的6868
+   application:
+      name: client-service
+      
+eureka:
+   client:
+      serviceUrl:
+         # 配置客服端的服务注册地址，即Eureka Server的地址
+         defaultZone: http://navy:123456@127.0.0.1:6868/eureka/,http://navy:123456@127.0.0.1:6869/eureka/
+
+server:
+   port: 7789

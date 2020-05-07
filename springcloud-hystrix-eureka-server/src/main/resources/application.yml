@@ -1,0 +1,31 @@
+spring:
+   profiles:
+      active: dev-6868 # 指定当前活跃的服务
+
+---
+spring:
+   profiles: dev-6868 # 开发中的6868
+   application:
+      name: eureka-server
+   security:
+      user:
+         name: navy # 用户名
+         password: 123456 # 密码
+  
+# 服务器启动后占用的端口
+server:
+   port: 6868
+
+eureka:
+   instance:
+      hostname: localhost
+   client:
+      register-with-eureka: false # 当前微服务不注册到eureka中，如果是集群则要改成true
+      fetch-registry: false # 不通过eureka获取服务器的注册信息
+      service-url:
+         defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
+   server:
+       # 设置清理时间，以毫秒数为单位。默认为60秒，不建议修改
+      delta-retention-timer-interval-in-ms: 60000
+       # 服务端开启自我保护模式。无论什么情况，服务端都会保持一定数量的服务。避免client与server的网络问题，而出现大量的服务被清除。
+      enable-self-preservation: true

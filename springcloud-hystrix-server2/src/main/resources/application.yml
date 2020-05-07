@@ -1,0 +1,14 @@
+server:
+   port: 8888
+
+spring:
+   application:
+      name: hystrix-server
+
+eureka:
+   #客户端
+   client:
+      #注册中心地址
+      service-url:
+         # 注册到eureka中，这样就可以跟Eureka结合，这样Ribbon就可以通过Eureka动态的获取服务列表
+         defaultZone: http://navy:123456@127.0.0.1:6868/eureka/,http://navy:123456@127.0.0.1:6869/eureka/
